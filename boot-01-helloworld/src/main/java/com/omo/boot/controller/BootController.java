@@ -17,6 +17,9 @@ public class BootController {
     public String testBoot(){
 
         System.out.println("我是分支创建的");
+
+
+        System.out.println("我是枝干，我也在23行输出一句话");
         return "你好+helloWord";
     }
 }
