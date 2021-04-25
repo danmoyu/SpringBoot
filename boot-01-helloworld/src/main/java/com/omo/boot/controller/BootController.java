@@ -16,6 +16,7 @@ public class BootController {
     @RequestMapping("/hello")
     public String testBoot(){
 
+        System.out.println("我是分支创建的");
         return "你好+helloWord";
     }
 }
