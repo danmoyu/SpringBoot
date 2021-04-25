@@ -16,6 +16,6 @@ public class BootController {
     @RequestMapping("/hello")
     public String testBoot(){
 
-        return "你好";
+        return "你好+helloWord";
     }
 }
