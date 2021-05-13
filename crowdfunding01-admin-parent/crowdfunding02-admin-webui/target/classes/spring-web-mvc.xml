@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.omo.mvc"/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--启用SpringMVC的注解驱动-->
+    <mvc:annotation-driven/>
+
+    <!--配置基于XML的异常映射机制-->
+    <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!--配置异常类型和具体视图页面的对应关系
+            是properties类型的：setExceptionMappings(Properties mappings)-->
+        <property name="exceptionMappings" >
+            <props>
+                <!--key属性:指明异常全类名，-->
+                <!--标签体中写对应的视图（这个值要拼前后缀得到具体路径）-->
+                <!--这只是其中的一个异常，有需要再进行配置-->
+                <prop key="java.lang.Exception">system-error</prop>
+                <prop key="com.omo.exception.AccessForbiddenException">admin-login</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <!--配置view-controller，直接把请求地址和视图名关联起来，不必写handler方法了-->
+    <mvc:view-controller path="/admin/to/login/page.html" view-name="admin-login"/>
+
+    <mvc:view-controller path="/admin/to/main/page.html" view-name="admin-main"/>
+    <!--去admin新增页面，不需要携带数据，因此采用该方法更加便捷-->
+    <mvc:view-controller path="/admin/to/add/page.html" view-name="admin-add"/>
+    <!-- 去role主界面的，也是不需要携带数据的   -->
+    <mvc:view-controller path="/role/to/page.html" view-name="role-page"/>
+    <!--去菜单页面-->
+    <mvc:view-controller path="/menu/to/page.html" view-name="menu-page"/>
+
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/to/login/page.html"/>
+            <mvc:exclude-mapping path="/admin/do/login.html"/>
+            <mvc:exclude-mapping path="/admin/do/logout.html"/>
+
+            <bean class="com.omo.mvc.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

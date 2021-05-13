@@ -17,6 +17,7 @@
                 connectionURL="jdbc:mysql://localhost:3306/project_crowd?serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=UTF-8"
                 userId="root"
                 password="123456">
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -29,13 +30,13 @@
         -->
         <javaModelGenerator targetPackage="com.omo.bean"
                             targetProject=".\src\main\java">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="com.omo.dao"
                          targetProject=".\src\main\java">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
         <!--javaClientGenerator：dao接口生成器-->
@@ -50,7 +51,7 @@
         tableName="t_admin":表名
         domainObjectName：对应POJO中的哪一个Bean
         -->
-        <table tableName="t_admin" domainObjectName="Admin"/>
+        <table tableName="t_auth" domainObjectName="Auth"/>
 
     </context>
 </generatorConfiguration>

@@ -3,15 +3,27 @@ package com.omo.bean;
 public class Admin {
     private Integer id;
 
-    private String loginacct;
+    private String loginAcct;
 
-    private String userpswd;
+    private String userPswd;
 
-    private String username;
+    private String userName;
 
     private String email;
 
-    private String createtime;
+    private String createTime;
+
+    public Admin() {
+    }
+
+    public Admin(Integer id, String loginAcct, String userPswd, String userName, String email, String createTime) {
+        this.id = id;
+        this.loginAcct = loginAcct;
+        this.userPswd = userPswd;
+        this.userName = userName;
+        this.email = email;
+        this.createTime = createTime;
+    }
 
     public Integer getId() {
         return id;
@@ -21,28 +33,28 @@ public class Admin {
         this.id = id;
     }
 
-    public String getLoginacct() {
-        return loginacct;
+    public String getLoginAcct() {
+        return loginAcct;
     }
 
-    public void setLoginacct(String loginacct) {
-        this.loginacct = loginacct == null ? null : loginacct.trim();
+    public void setLoginAcct(String loginAcct) {
+        this.loginAcct = loginAcct == null ? null : loginAcct.trim();
     }
 
-    public String getUserpswd() {
-        return userpswd;
+    public String getUserPswd() {
+        return userPswd;
     }
 
-    public void setUserpswd(String userpswd) {
-        this.userpswd = userpswd == null ? null : userpswd.trim();
+    public void setUserPswd(String userPswd) {
+        this.userPswd = userPswd == null ? null : userPswd.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getEmail() {
@@ -53,11 +65,23 @@ public class Admin {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getCreatetime() {
-        return createtime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(String createtime) {
-        this.createtime = createtime == null ? null : createtime.trim();
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", loginAcct='" + loginAcct + '\'' +
+                ", userPswd='" + userPswd + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
     }
 }
